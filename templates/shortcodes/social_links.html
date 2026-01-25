@@ -1,0 +1,35 @@
+<center>
+    <ul class="socials">
+        {% if config.markdown.external_links_target_blank %}
+            {% set link_attrs = "rel='me noopener' target='_blank'" %}
+        {% else %}
+            {% set link_attrs = "rel='me'" %}
+        {% endif %}
+
+        {% for social in config.extra.socials %}
+            <li style="display:inline;">
+                <a {{ link_attrs | safe }}
+                href="{{ social.url }}"
+                class="social"
+                style="
+                    display:inline-flex;
+                    align-items:center;
+                    font-size:1.4rem;
+                    text-decoration:none;
+                    margin-right:1.2em;
+                ">
+                    <img
+                        alt="{{ social.name }}"
+                        src="{{ get_url(path='icons/social/' ~ social.icon ~ '.svg') }}"
+                        style="
+                            width:1em;
+                            height:1em;
+                            vertical-align:middle;
+                        "
+                    />
+                    {{ social.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</center>
