@@ -1,5 +1,13 @@
 <center>
-    <ul class="socials">
+    <ul class="socials"
+    style="
+        list-style:none;
+        padding:0;
+        margin:0 auto;
+        display:flex;
+        justify-content:center;
+        width:fit-content;
+    ">
         {% if config.markdown.external_links_target_blank %}
             {% set link_attrs = "rel='me noopener' target='_blank'" %}
         {% else %}
@@ -7,7 +15,7 @@
         {% endif %}
 
         {% for social in config.extra.socials %}
-            <li style="display:inline;">
+            <li style="display:inline; margin-left:0.8em; margin-right:0.8em;">
                 <a {{ link_attrs | safe }}
                 href="{{ social.url }}"
                 class="social"
@@ -16,7 +24,6 @@
                     align-items:center;
                     font-size:1.4rem;
                     text-decoration:none;
-                    margin-right:1.2em;
                 ">
                     <img
                         alt="{{ social.name }}"
