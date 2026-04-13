@@ -9,7 +9,7 @@ build_search_index = false
 
 theme = "apollo"
 title = "Patrik Drbal"
-description = "My personal homepage"
+description = "Patrik Drbal – Theoretical Computer Science student at the Department of Theoretical Computer Science at the Faculty of Information Technology CTU in Prague, and a software developer & analyst at Target Technologie."
 generate_feeds = false
 minify_html = true
 taxonomies = [{ name = "tags" }]
@@ -42,7 +42,7 @@ socials = [
     { name = "", url = "https://www.linkedin.com/in/patrik-drbal", icon = "linkedin" },
     { name = "", url = "mailto:patrik.drbal@fit.cvut.cz", icon = "email" },
     { name = "", url = "https://www.facebook.com/patrik.drbal", icon = "facebook" },
-    { name = "", url = "https://www.instagram.com/drbalpat/", icon = "instagram" },
+    { name = "", url = "https://www.instagram.com/drbalpat", icon = "instagram" },
 #    { name = "university", url = "https://fit.cvut.cz/en/faculty/people/23701-patrik-drbal", icon = "" },
 ]
 

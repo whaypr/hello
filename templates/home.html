@@ -1,5 +1,25 @@
 {% extends "base.html" %}
 
+{% block head %}
+  {{ super() }}
+
+  <script type="application/ld+json">   {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Patrik Drbal",
+    "alumniOf": "Faculty of Information Technology, Czech Technical University in Prague",
+    "jobTitle": "Software Developer & Analyst, Researcher",
+    "url": "https://pdddd.one",
+    "sameAs": [
+        "https://github.com/whaypr",
+        "https://linkedin.com/in/patrik-drbal",
+        "https://www.facebook.com/patrik.drbal",
+        "https://www.instagram.com/drbalpat"
+    ]
+    }
+    </script>
+{% endblock head %}
+
 {% macro home_page(section) %}
     <main>
         <article>
