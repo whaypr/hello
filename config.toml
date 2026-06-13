@@ -41,8 +41,8 @@ socials = [
     { name = "", url = "https://github.com/whaypr", icon = "github" },
     { name = "", url = "https://www.linkedin.com/in/patrik-drbal", icon = "linkedin" },
     { name = "", url = "mailto:patrik.drbal@fit.cvut.cz", icon = "email" },
-    { name = "", url = "https://www.facebook.com/patrik.drbal", icon = "facebook" },
     { name = "", url = "https://www.instagram.com/drbalpat", icon = "instagram" },
+    { name = "", url = "https://www.facebook.com/patrik.drbal", icon = "facebook" },
 #    { name = "university", url = "https://fit.cvut.cz/en/faculty/people/23701-patrik-drbal", icon = "" },
 ]
 
