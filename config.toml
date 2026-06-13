@@ -53,4 +53,10 @@ menu = [
 #    { name = "/tags", url = "/tags", weight = 4 },
 ]
 
+[extra.analytics]
+enabled = true
+
+[extra.analytics.goatcounter]
+user = "whaypr"
+
 # See this for more options: https://github.com/not-matthias/apollo/blob/main/config.toml#L14
