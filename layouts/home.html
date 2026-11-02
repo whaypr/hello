@@ -1,0 +1,7 @@
+{{- /*
+Override of the theme's home.html: the home page is a landing page, so it shows
+only its own content. The list of posts lives under /blog/, see section.html.
+*/ -}}
+{{ define "main" }}
+  {{ .Content }}
+{{ end }}

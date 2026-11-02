@@ -1,0 +1,27 @@
+{{- /*
+Body of a term page (/tags/css/, /categories/themes/), based on the theme's
+term.html. Adds a link back to /blog/ and the tags and categories rows, so the
+filter can be changed without leaving the list. Used by /layouts/tags/term.html
+and /layouts/categories/term.html, which Hugo prefers over _default/term.html.
+
+@context {page} the current term page
+
+@example: {{ partial "blog/term_page.html" . }}
+*/}}
+
+{{- $isTag := eq .Type "tags" -}}
+<h1>{{ if $isTag }}#{{ end }}{{ .Title }}</h1>
+{{- with site.GetPage "/blog" }}
+<nav class="term-nav">
+  <a class="term-nav__label" href="{{ .RelPermalink }}">All posts</a>
+</nav>
+{{- end }}
+{{- partial "blog/terms_nav.html" (dict "taxonomy" "categories" "page" .) }}
+{{- partial "blog/terms_nav.html" (dict "taxonomy" "tags" "page" .) }}
+{{ .Content }}
+
+{{- range .Pages }}
+<h2 class="term-post-title"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+{{- /* show date and lastmod */ -}}
+{{- partial "main/dates.html" . }}
+{{- end }}

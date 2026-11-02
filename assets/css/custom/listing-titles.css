@@ -1,0 +1,12 @@
+/* Titles that head an entry in a list: the subsites on /academia/, the posts on
+/blog/ and the courses and talks inside their cards. The theme never sets a
+heading size, so browsers give these h2s 1.5 times the body text, which swamps
+the one line of text under each of them – the theme's own comments call for these
+titles to sit "close to the date info" and "close to the summary". Just above the
+body size is enough, since a heading is already bold. */
+
+.section-post-title,
+.term-post-title,
+.card .heading {
+  font-size: 1.0625rem;
+}

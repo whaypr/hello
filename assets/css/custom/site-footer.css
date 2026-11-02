@@ -1,0 +1,52 @@
+/* Footer on one line: social media icons on the left, the blog's RSS link on the
+right */
+
+.footer {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  column-gap: 0.75rem;
+  padding-block: 0.75rem;
+}
+
+/* The paragraphs' default block margins would each add a line's worth of height */
+.footer p {
+  margin-block: 0;
+}
+
+.footer__aside {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+  column-gap: 0.75rem;
+}
+
+/* Social media icons, see /layouts/_partials/footer/socials.html */
+
+.footer__socials {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block: 0;
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+.footer__social {
+  display: inline-flex;
+  color: var(--foreground-color3);
+}
+
+/* The icons are inlined and carry no fill of their own, so this is what colours
+them – no filter needed when the scheme changes */
+.footer__social svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+.footer__social:is(:hover, :focus-visible) {
+  color: var(--accent-color);
+}

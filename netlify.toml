@@ -1,0 +1,23 @@
+[build.environment]
+  GO_VERSION = "1.27.3"
+  HUGO_VERSION = "0.169.0"
+  NODE_VERSION = "24.22.1"
+  TZ = "Europe/Prague"
+  HUGO_ENV = "production"
+
+
+[build]
+  publish = "public"
+  command = """\
+    git config --global core.quotepath false && \
+    hugo build --gc --minify --baseURL "${URL}"
+    """
+
+[context.deploy-preview.environment]
+  HUGO_ENV = "development"
+
+[context.branch-deploy.environment]
+  HUGO_ENV = "development"
+
+[build.processing]
+  skip_processing = true

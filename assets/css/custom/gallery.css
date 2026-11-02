@@ -1,0 +1,23 @@
+/* A row of thumbnails that open in GLightbox, see /layouts/_shortcodes/gallery.html.
+The photos themselves are 4–5 thousand pixels wide, so a row shows the small
+versions at one shared height and leaves the real files to the lightbox. */
+
+.gallery {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-block: 0.75rem;
+}
+
+.gallery__item {
+  cursor: zoom-in;
+}
+
+/* Block display takes an image out of a text line, whose descender space would
+otherwise hang a few pixels under every thumbnail */
+.gallery__item img {
+  display: block;
+  height: 8rem;
+  width: auto;
+}

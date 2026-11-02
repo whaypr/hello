@@ -1,0 +1,25 @@
+{{- /*
+One thumbnail inside a gallery, see ./gallery.html.
+
+  src    the full size photo, opens in the lightbox
+  thumb  the small image shown in the row, defaults to src
+  alt    describes the photo, omit only if it is decorative
+  gallery  groups images into one album; by default every page has one album
+
+If a page needs two separate albums, give each image a gallery name.
+*/ -}}
+{{- $src := .Get "src" | default (.Get 0) -}}
+{{- if not $src }}{{ errorf "gallery-img: no src given" }}{{ end -}}
+{{- $thumb := .Get "thumb" | default $src -}}
+{{- $gallery := .Get "gallery" | default .Page.RelPermalink -}}
+{{- /* The image's real size goes into the tag, so the browser can keep the row's
+space reserved while the photo loads instead of pushing the text down. */ -}}
+{{- $size := "" -}}
+{{- $file := printf "static/%s" (strings.TrimPrefix "/" $thumb) -}}
+{{- if fileExists $file -}}
+  {{- $img := imageConfig $file -}}
+  {{- $size = printf ` width="%d" height="%d"` $img.Width $img.Height -}}
+{{- end -}}
+<a class="gallery__item glightbox" href="{{ $src }}" data-gallery="{{ $gallery }}" data-type="image">
+  <img src="{{ $thumb }}" alt="{{ .Get "alt" }}" loading="lazy"{{ $size | safeHTMLAttr }}>
+</a>

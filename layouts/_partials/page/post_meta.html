@@ -1,0 +1,27 @@
+{{- /*
+One line under the page title: the date, then categories, then tags. Categories
+are plain terms, tags are prefixed with a hash sign, and every term is preceded
+by a separator, so the date and the terms read as one list.
+Nothing is rendered for a page that has neither a date nor terms, e.g. /me/.
+
+@context {page} the current page
+
+@example: {{ partial "page/post_meta.html" . }}
+*/}}
+
+{{- $categories := .GetTerms "categories" -}}
+{{- $tags := .GetTerms "tags" -}}
+
+{{- if or (not .Date.IsZero) $categories $tags -}}
+<p class="post-meta">
+  {{- if not .Date.IsZero }}
+    {{- partial "main/dates.html" . }}
+  {{- end -}}
+  {{- range $categories }}
+    <span class="post-meta__separator">·</span><a class="post-meta__term" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+  {{- end -}}
+  {{- range $tags }}
+    <span class="post-meta__separator">·</span><a class="post-meta__term post-meta__term--tag" href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>
+  {{- end -}}
+</p>
+{{- end -}}

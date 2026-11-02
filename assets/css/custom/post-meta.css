@@ -1,0 +1,20 @@
+/* Date, categories and tags, shown as a single line under the post title */
+
+.post-meta {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+  gap: 0.375rem;
+  /* Spacing comes from the title's and the content's own margins */
+  margin-block: 0;
+  font-size: 0.875rem;
+}
+
+/* Let the terms' items share .post-meta's gaps, rather than nesting a box */
+.post-meta__terms {
+  display: contents;
+}
+
+.post-meta__separator {
+  color: var(--foreground-color3);
+}

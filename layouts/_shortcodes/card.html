@@ -1,0 +1,16 @@
+{{- /*
+Groups one entry – a course, a talk, a paper – so that its heading, its text and
+its links read as a single block:
+
+    {{< card >}}
+    ## Course name
+    …
+    {{< /card >}}
+
+A {{< >}} call hands the inner content over unrendered, hence RenderString: the
+headings inside become real headings again, with their id and the "#" deep link.
+Styling lives in /assets/css/custom/card.css.
+*/ -}}
+<div class="card">
+{{ .Inner | .Page.RenderString }}
+</div>

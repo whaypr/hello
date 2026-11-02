@@ -1,0 +1,10 @@
+{{- /*
+Override of the theme's footer.html: one line with the social media icons on the
+left and the blog's RSS link on the right, the latter only on blog pages. The
+theme's copyright notice and its "built with Hugo and Yue" line are dropped.
+See /assets/css/custom/site-footer.css.
+*/ -}}
+{{ partial "./footer/socials.html" . }}
+<div class="footer__aside">
+  {{ partial "./footer/rss_link.html" . }}
+</div>

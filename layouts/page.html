@@ -1,0 +1,18 @@
+{{- /*
+Override of the theme's page.html: date and terms share one line, no author line,
+no prev/next nav.
+
+Only posts print their title. On the other pages it would repeat where you
+already are – the menu item you clicked, or the lead line under it – and the site
+name in the header is already the h1 of the document.
+*/ -}}
+{{ define "main" }}
+  {{- if eq .Section "blog" }}
+  <h1>{{ .Title }}</h1>
+  {{- end }}
+  {{ partial "page/post_meta.html" . }}
+  {{ partial "page/translation_list.html" . }}
+  {{ partial "page/toc.html" . }}
+  {{ .Content }}
+  {{ partial "page/page-end.html" . }}
+{{ end }}

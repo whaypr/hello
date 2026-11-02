@@ -1,0 +1,17 @@
+{{- /* GoatCounter (account whaypr), carried over from the previous site.
+count.js is GoatCounter's own script, analytics.js tags the visit with the traffic
+source, see /static/js/analytics.js. Production only, so local builds don't count. */ -}}
+{{- if hugo.IsProduction }}
+<script data-goatcounter="https://whaypr.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script async src="/js/analytics.js"></script>
+{{- end }}
+{{- /* GLightbox, the photo lightbox carried over from the previous site, and the
+gallery shortcode that uses it: both are bundled and fingerprinted here, and only
+on the pages that contain a gallery. On the previous site they were loaded on
+every page. */ -}}
+{{- if .HasShortcode "gallery" }}
+  {{- $css := resources.Get "vendor/glightbox/glightbox.min.css" | resources.Fingerprint }}
+  {{- $js := slice (resources.Get "vendor/glightbox/glightbox.min.js") (resources.Get "js/gallery.js") | resources.Concat "js/gallery.js" | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
+<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous"></script>
+{{- end }}

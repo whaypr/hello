@@ -1,0 +1,22 @@
+/* One entry as a block – a course, a talk, a paper – see
+/layouts/_shortcodes/card.html. The outline uses the theme's secondary surface
+colour, the tone the tag chips are already filled with, so it reads as part of
+the palette in both colour schemes instead of adding a new grey. */
+
+.card {
+  margin-block: 1rem;
+  padding-block: .75rem;
+  padding-inline: 1rem;
+  border: 1px solid var(--background-color1);
+  border-radius: .25rem;
+}
+
+/* An entry's own heading opens the block, so it should not stack its top
+margin on top of the padding, and the same for the last element's bottom. */
+.card > :first-child {
+  margin-block-start: 0;
+}
+
+.card > :last-child {
+  margin-block-end: 0;
+}

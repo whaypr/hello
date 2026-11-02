@@ -1,0 +1,24 @@
+{{- /*
+Section template for /blog/, based on the theme's section.html. Adds the tags and
+categories rows above the list of posts, so the blog can be browsed by term.
+*/ -}}
+{{ define "main" }}
+{{ $pages := .Pages }}
+{{ $sectionPagerSize := or site.Params.sectionPagerSize 10 }}
+{{ $paginator := .Paginate $pages $sectionPagerSize }}
+
+  {{- /* no h1: the Blog menu item you clicked is the title of this page */ -}}
+  {{ partial "blog/terms_nav.html" (dict "taxonomy" "categories" "page" .) }}
+  {{ partial "blog/terms_nav.html" (dict "taxonomy" "tags" "page" .) }}
+  {{ .Content }}
+
+  {{ range $paginator.Pages }}
+    <h2 class="section-post-title"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+    {{- /* show date and lastmod */ -}}
+    {{ partial "main/dates.html" . }}
+  {{ end }}
+
+  <nav class="paginator">
+  {{- partial "pagination.html" . }} {{/* embedded template */}}
+  </nav>
+{{ end }}

@@ -1,0 +1,18 @@
+{{- /*
+Taxonomy page (/tags/, /categories/), based on the theme's taxonomy.html: every term
+as a chip with its post count, instead of one heading per term.
+*/ -}}
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+{{- with site.GetPage "/blog" }}
+  <nav class="term-nav">
+    <a class="term-nav__label" href="{{ .RelPermalink }}">All posts</a>
+  </nav>
+{{- end }}
+{{- $isTag := eq .Type "tags" }}
+  <nav class="term-nav" aria-label="{{ .Title }}">
+    {{- range .Pages.ByLinkTitle }}
+    <a class="term-nav__term" href="{{ .RelPermalink }}">{{ if $isTag }}#{{ end }}{{ .LinkTitle }}<span class="term-nav__count">{{ len .Pages }}</span></a>
+    {{- end }}
+  </nav>
+{{ end }}

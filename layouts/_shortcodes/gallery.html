@@ -1,0 +1,15 @@
+{{- /*
+A row of thumbnails that open full size in a lightbox:
+
+    {{< gallery >}}
+    {{< gallery-img src="/images/Finland/CHEESE-a.jpg" thumb="/images/Finland/CHEESE-a-thumb.jpg" alt="CHEESE sitsit" >}}
+    {{< gallery-img src="/images/Finland/CHEESE-b.jpg" thumb="/images/Finland/CHEESE-b-thumb.jpg" alt="CHEESE sitsit" >}}
+    {{< /gallery >}}
+
+The library itself is loaded only on pages that use this, see
+/layouts/_partials/head/head-end.html; the row is styled in
+/assets/css/custom/gallery.css.
+*/ -}}
+<div class="gallery">
+{{ .Inner | .Page.RenderString }}
+</div>

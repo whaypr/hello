@@ -1,0 +1,29 @@
+{{- /*
+Tags or categories as one wrapping row of links, used to browse the blog by term.
+The row label is a link to the taxonomy's own page, which lists the same terms
+with post counts. The term you are already on is rendered as plain text.
+
+@context {page} page The page being rendered
+@context {string} taxonomy "tags" or "categories"
+
+@example: {{ partial "blog/terms_nav.html" (dict "taxonomy" "tags" "page" .) }}
+*/}}
+
+{{- $page := .page -}}
+{{- $taxonomy := .taxonomy -}}
+{{- $isTag := eq $taxonomy "tags" -}}
+{{- with site.GetPage (printf "/%s" $taxonomy) -}}
+  {{- $label := . -}}
+  {{- with .Pages -}}
+<nav class="term-nav" aria-label="{{ $label.Title }}">
+  <a class="term-nav__label" href="{{ $label.RelPermalink }}">{{ $label.Title }}</a>
+    {{- range .ByLinkTitle }}
+      {{- if eq . $page }}
+  <span class="term-nav__term term-nav__term--current" aria-current="true">{{ if $isTag }}#{{ end }}{{ .LinkTitle }}</span>
+      {{- else }}
+  <a class="term-nav__term" href="{{ .RelPermalink }}">{{ if $isTag }}#{{ end }}{{ .LinkTitle }}</a>
+      {{- end }}
+    {{- end }}
+</nav>
+  {{- end -}}
+{{- end -}}

@@ -1,0 +1,33 @@
+/* Site name on the left, menu on the right of the same line */
+
+.header {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  column-gap: 1.5rem;
+  padding-block: 0.75rem;
+}
+
+.header__title {
+  margin-block: 0;
+  /* Close to the menu's size, the name doesn't need to dominate the header */
+  font-size: 1.25rem;
+}
+
+/* The list's default block margins would push the menu off the name's baseline */
+.header__menu {
+  margin-block: 0;
+}
+
+/* The menu item of the page you are looking at, and of the section you are in
+while reading one of its posts. The theme sets these classes and a matching
+aria-current; this is the visible marker, plus undoing the bold it adds. Links
+carry no underline anywhere else on the site, so the underline stands on its own
+and the colour stays the same as every other menu item. */
+.menu__link--active,
+.menu__link--ancestor {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  font-weight: normal;
+}

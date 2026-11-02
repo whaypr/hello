@@ -1,0 +1,13 @@
+{{- /*
+Override of the theme's header.html: the site name is a link to this language's
+home page. The site name and the menu share one line, see /assets/css/custom/site-header.css.
+*/ -}}
+<h1 class="header__title">
+  <a class="header__title-link" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
+</h1>
+<nav class="menu language">
+  <ul class="menu__list language__list header__menu">
+    {{- partial "./header/menu.html" (dict "menuID" "main" "page" .) -}}
+    {{- partial "./header/language_selector.html" . -}}
+  </ul>
+</nav>

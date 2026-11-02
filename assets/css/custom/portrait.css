@@ -1,0 +1,7 @@
+/* The portrait at the top of the front page. An <img> is inline by default, so
+auto margins would do nothing; block display is what lets it centre. */
+
+.portrait {
+  display: block;
+  margin-inline: auto;
+}

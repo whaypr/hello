@@ -1,0 +1,12 @@
+{{- /*
+Override of the theme's rss_link.html: there is one feed, the blog's (see
+outputs in /hugo.yaml), so on a post the link goes to the blog feed instead of
+to a feed of its own, and pages outside the blog get no link at all.
+*/ -}}
+{{- if eq .Section "blog" -}}
+  {{- with site.GetPage "/blog" -}}
+    {{- with .OutputFormats.Get "rss" -}}
+<p class="footer__rss-link"><a href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="Blog feed">RSS</a></p>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
