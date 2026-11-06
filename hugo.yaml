@@ -44,9 +44,6 @@ params:
     - name: LinkedIn
       url: https://www.linkedin.com/in/patrik-drbal
       icon: linkedin
-    - name: Email
-      url: mailto:patrik.drbal@fit.cvut.cz
-      icon: email
     - name: Instagram
       url: https://www.instagram.com/drbalpat
       icon: instagram

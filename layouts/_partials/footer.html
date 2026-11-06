@@ -3,8 +3,19 @@ Override of the theme's footer.html: one line with the social media icons on the
 left and the blog's RSS link on the right, the latter only on blog pages. The
 theme's copyright notice and its "built with Hugo and Yue" line are dropped.
 See /assets/css/custom/site-footer.css.
+
+The front page is the exception: there the links are the pill buttons under its
+intro instead, see /layouts/home.html. Nothing else is left for that page – the
+RSS link only appears on blog pages – so the wrapper around it is left out when
+there is no link, which is what lets a footer with nothing in it collapse to
+nothing rather than show its top border on its own.
 */ -}}
-{{ partial "./footer/socials.html" . }}
+{{- if not .IsHome -}}
+  {{ partial "social-links.html" (dict "variant" "footer") }}
+{{- end -}}
+{{- $rss := partial "./footer/rss_link.html" . -}}
+{{- if trim $rss " \n\r\t" -}}
 <div class="footer__aside">
-  {{ partial "./footer/rss_link.html" . }}
+  {{ $rss }}
 </div>
+{{- end -}}

@@ -1,5 +1,6 @@
 /* Footer on one line: social media icons on the left, the blog's RSS link on the
-right */
+right. The icons themselves, and the front page's bigger version of them, are in
+/assets/css/custom/social-links.css */
 
 .footer {
   display: flex;
@@ -22,31 +23,10 @@ right */
   column-gap: 0.75rem;
 }
 
-/* Social media icons, see /layouts/_partials/footer/socials.html */
-
-.footer__socials {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  gap: 0.5rem;
-  margin-block: 0;
-  padding-inline-start: 0;
-  list-style: none;
-}
-
-.footer__social {
-  display: inline-flex;
-  color: var(--foreground-color3);
-}
-
-/* The icons are inlined and carry no fill of their own, so this is what colours
-them – no filter needed when the scheme changes */
-.footer__social svg {
-  width: 1rem;
-  height: 1rem;
-  fill: currentColor;
-}
-
-.footer__social:is(:hover, :focus-visible) {
-  color: var(--accent-color);
+/* The front page keeps its links under the intro instead of in here, so on that
+one page there is often nothing left to show – only elements count, the whitespace
+the template leaves behind does not. Without this the border and its padding would
+stand alone at the bottom of the page. */
+.footer:not(:has(*)) {
+  display: none;
 }

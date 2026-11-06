@@ -1,7 +1,14 @@
 {{- /*
 Override of the theme's home.html: the home page is a landing page, so it shows
 only its own content. The list of posts lives under /blog/, see section.html.
+
+The two things on it – the portrait from /content/en/_index.md and the social
+media links – are put in one column that is centred in the space below the
+header, see /assets/css/custom/home.css.
 */ -}}
 {{ define "main" }}
-  {{ .Content }}
+  <div class="home-hero">
+    {{ .Content }}
+    {{ partial "social-links.html" (dict "variant" "hero") }}
+  </div>
 {{ end }}

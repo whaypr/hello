@@ -1,0 +1,35 @@
+{{- /*
+Icon links to the profiles listed in params.socials (see /hugo.yaml), in the
+order given there. Used in two places: in the footer of every page but the front
+page, and as the row of icons under the portrait on the front page – see
+/layouts/_partials/footer.html and /layouts/home.html.
+
+Pass the place it goes to as "variant". It only picks the BEM modifier the two
+looks hang off in /assets/css/custom/social-links.css: the footer's small icons,
+and the same icons larger and easier to hit on the front page.
+
+The icons are the only label, so the name of each profile goes in aria-label for
+assistive technology and in title as a tooltip.
+
+The SVG files are inlined from /assets/icons/social/ instead of referenced with
+<img>, so an icon takes the colour of the text around it and follows the colour
+scheme by itself; the previous site had to run them through an invert filter for
+that.
+*/ -}}
+{{- with site.Params.socials -}}
+<ul class="social-links social-links--{{ $.variant }}">
+  {{- range . -}}
+  {{- $icon := resources.Get (printf "icons/social/%s.svg" .icon) -}}
+  {{- if not $icon -}}
+    {{- errorf "params.socials refers to a missing icon: /assets/icons/social/%s.svg" .icon -}}
+  {{- end -}}
+  {{- $svg := replaceRE "<svg " `<svg aria-hidden="true" focusable="false" ` ($icon.Content | string) 1 -}}
+  <li>
+    <a class="social-links__link" href="{{ .url }}" title="{{ .name }}" aria-label="{{ .name }}"
+      {{- if not (hasPrefix .url "mailto:") }} rel="me noopener" target="_blank"{{ end -}}>
+      {{- $svg | safeHTML -}}
+    </a>
+  </li>
+  {{- end -}}
+</ul>
+{{- end -}}

@@ -3,8 +3,10 @@
 @import "./post-meta.css";
 @import "./site-header.css";
 @import "./site-footer.css";
+@import "./social-links.css";
 @import "./term-nav.css";
 @import "./card.css";
+@import "./home.css";
 @import "./portrait.css";
 @import "./gallery.css";
 @import "./listing-titles.css";

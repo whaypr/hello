@@ -1,0 +1,71 @@
+/* The social media links from params.socials, see /layouts/_partials/social-links.html.
+The footer of every page but the front page gets the --footer variant, the front
+page itself gets --hero under its portrait. */
+
+.social-links {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block: 0;
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+.social-links__link {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* The icons are inlined and carry no fill of their own, so this is what colours
+them – no filter needed when the scheme changes */
+.social-links__link svg {
+  fill: currentColor;
+}
+
+/* Footer: the small print it sits in, icons alone on one line */
+
+.social-links--footer .social-links__link {
+  color: var(--foreground-color3);
+}
+
+.social-links--footer .social-links__link svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.social-links--footer .social-links__link:is(:hover, :focus-visible) {
+  color: var(--accent-color);
+}
+
+/* Front page: the same icons, big enough that the page does not send the reader
+looking for them at the bottom of the screen, and in the same quiet colour as the
+text around them rather than in the accent colour the links are elsewhere. */
+
+.social-links--hero {
+  justify-content: center;
+  /* Each icon already carries its own space, see the link below */
+  gap: 0.25rem;
+}
+
+/* The space around an icon is its hit area, rather than a border drawn around it:
+a row of links to press that does not have to say so */
+.social-links--hero .social-links__link {
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  color: var(--foreground-color3);
+}
+
+.social-links--hero .social-links__link svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Only the icon and the space behind it change, so the row keeps its shape: the
+lift of a key that can be pressed, without the accent colour on screen all at once */
+.social-links--hero .social-links__link:is(:hover, :focus-visible) {
+  background-color: var(--background-color1);
+  color: var(--accent-color);
+}

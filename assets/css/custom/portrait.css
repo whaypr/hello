@@ -1,7 +1,54 @@
-/* The portrait at the top of the front page. An <img> is inline by default, so
-auto margins would do nothing; block display is what lets it centre. */
+/* The portrait on the front page, see /content/en/_index.md and
+/assets/css/custom/home.css for where it sits.
+
+The picture is a cut-out of the whole figure, papers and all, which made it the
+busiest thing on the page, so only part of it is shown. The figure element is the
+circle it is seen through; the picture is laid out whole inside that circle – fit,
+not crop, so nothing is cut off before the zoom has a say – and then scaled from its
+top edge, where the head is.
+
+--portrait-zoom is how far in the circle sits:
+
+  1     the whole frame inside the circle, the page showing at the sides
+  1.15  it fills the circle, cut off below the knees
+  1.25  the arms and the papers start to go at the sides
+  2     head and shoulders only
+
+Below 1 it only shrinks within the circle. The picture is a cut-out on a transparent
+background, so any room left inside the circle is the page's own background and shows
+no edge – which is also why the rough matting of the cut-out is the only thing the
+ring below has to hide.
+
+A figure around the image rather than the image alone, because an <img> cannot clip
+the part of itself that hangs outside the circle. The theme already takes a figure's
+side margins away from it. */
 
 .portrait {
-  display: block;
+  --portrait-zoom: 1;
+
+  width: 12rem;
+  height: 12rem;
+  margin-block: 0; /* the default is a line's worth above and below */
   margin-inline: auto;
+  overflow: hidden;
+  border-radius: 50%;
+  /* The tone every other border on the site uses. It settles the circle on the page
+  without framing it, and covers the rough edge of the cut-out, which the dark colour
+  scheme would otherwise pick out against its background. */
+  box-shadow: 0 0 0 0 var(--background-color1);
+}
+
+.portrait img {
+  display: block;
+  /* The circle decides the box the picture is laid out in, not the attributes in the
+  markup – their height would otherwise have a say and turn the square into an oval */
+  width: 100%;
+  height: 100%;
+  /* Whole, not cropped: the zoom is the only thing cutting anything off */
+  object-fit: contain;
+  object-position: 50% 0;
+  /* The head sits against the top edge of the picture, so the zoom holds that edge in
+  place and grows outwards and downwards from it */
+  transform: scale(var(--portrait-zoom));
+  transform-origin: 50% 0;
 }
