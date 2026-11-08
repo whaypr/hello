@@ -1,0 +1,70 @@
+{{- /*
+Lists the entries of a section: its subsections as a plain link with their first
+paragraph as a caption, then its standalone pages the way the theme lists posts,
+with their date. No date for a subsection – a section has none, and the theme would
+print Jan 01, 0001 for it.
+
+A page can be asked about more than once: by the sections shortcode wherever an
+_index.md wants some of its links, and by /layouts/section.html at the end for
+whatever is still unplaced. What has been listed is recorded on the page store, so
+an entry never appears twice and one page can spread its links over any number of
+groups, with prose in between.
+
+Names in `only` and `omit` are matched against the folder or file name in /content/
+and against the title, ignoring case and spaces, so communities, Communities and
+Inner B all name their entry. Page .Name is not the folder name – it returns the
+title – hence .File.ContentBaseName.
+
+@context {page} page The section whose entries to list
+@context {string} what "subsections", "pages", or "all" when left out
+@context {string} only Comma-separated names to list here
+@context {string} omit Comma-separated names to hold back for later
+
+@example: {{ partial "section/entries.html" (dict "page" .) }}
+*/ -}}
+{{- $page := .page -}}
+{{- $what := .what | default "all" -}}
+{{- $seen := slice -}}
+{{- $placedByShortcode := $page.HasShortcode "sections" -}}
+{{- /* Only a page with sections shortcodes needs the page store: that is how a
+shortcode and the final automatic listing share what has already been placed.
+The store survives live-server rebuilds, though, so a page without shortcodes must
+start fresh instead of filtering out every entry listed by its previous render. */ -}}
+{{- if $placedByShortcode -}}
+  {{- with $page.Store.Get "sectionEntriesShown" }}{{ $seen = . }}{{ end }}
+{{- end }}
+{{- $only := slice -}}
+{{- with .only }}{{ $only = split (replace . " " "" | lower) "," }}{{ end }}
+{{- $omit := slice -}}
+{{- with .omit }}{{ $omit = split (replace . " " "" | lower) "," }}{{ end }}
+{{- $sections := slice -}}
+{{- range $page.Sections }}
+  {{- $keys := slice (replace (lower .Title) " " "") (replace (lower .File.ContentBaseName) " " "") }}
+  {{- if and (not (in $seen .RelPermalink)) (or (not $only) (intersect $keys $only)) (not (intersect $keys $omit)) }}
+    {{- $sections = $sections | append . -}}
+    {{- $seen = $seen | append .RelPermalink -}}
+  {{- end }}
+{{- end }}
+{{- $pages := slice -}}
+{{- range $page.RegularPages }}
+  {{- $keys := slice (replace (lower .Title) " " "") (replace (lower .File.ContentBaseName) " " "") }}
+  {{- if and (not (in $seen .RelPermalink)) (or (not $only) (intersect $keys $only)) (not (intersect $keys $omit)) }}
+    {{- $pages = $pages | append . -}}
+    {{- $seen = $seen | append .RelPermalink -}}
+  {{- end }}
+{{- end }}
+{{- if $placedByShortcode -}}
+  {{- $page.Store.Set "sectionEntriesShown" $seen -}}
+{{- end }}
+{{- range $sections }}
+  <h2 class="section-post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  {{ with .Summary }}
+  {{- /* plainify, as in the theme's home.html */ -}}
+  <p class="summary">{{ . | plainify | htmlUnescape | chomp }}</p>
+  {{ end }}
+{{- end }}
+{{- range $pages }}
+  <h2 class="section-post-title"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+  {{- /* show date and lastmod */ -}}
+  {{ partial "main/dates.html" . }}
+{{- end }}

@@ -1,0 +1,27 @@
+{{- /*
+Where the site goes, for the front page: one entry per item of the main menu, the
+name and the address taken from the menu itself and the line under it from that
+section's own front matter, so the front page and the header can never disagree
+about what the site contains. A new section shows up here as soon as it has a menu
+entry in /hugo.yaml and a `description` line of its own; without that line it still
+shows, on its name alone.
+
+An entry whose page cannot be found – one pointing outside this site, say – has no
+description to ask for, and is listed by name.
+
+The title and the caption carry the classes every other listing on the site uses
+for them, see /layouts/_partials/section/entries.html, so the two look alike;
+/assets/css/custom/home.css only centres them and spaces the pairs apart.
+*/ -}}
+{{- with site.Menus.main -}}
+<div class="home-sections">
+  {{- range . -}}
+  <h2 class="section-post-title"><a href="{{ .URL }}">{{ .Name }}</a></h2>
+  {{- with site.GetPage .URL }}
+  {{- with .Params.description }}
+  <p class="summary">{{ . }}</p>
+  {{- end }}
+  {{- end }}
+  {{- end -}}
+</div>
+{{- end -}}

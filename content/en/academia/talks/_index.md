@@ -11,10 +11,11 @@ Talks I've given.
 
 Sep 14, 2026
 
-11th School on Theoretical Informatics, Graphs And Mathematical
-Applications 2025, STIGMA '26.
+11th School on Theoretical Informatics, Graphs and Mathematical
+Applications 2026, STIGMA '26
 
 - [Handout](/pdfs/stigma2026-handout.pdf)
+- [Slides](https://whaypr.github.io/STIGMA)
 - [Conference page](https://ggoat.fit.cvut.cz/stigma/2026.en.html)
 - [Media coverage](https://fit.cvut.cz/en/life-at-fit/fit-live/news/26013-stigma-2026-conference-offered-five-days-full-of-theoretical-computer-science)
 
@@ -26,8 +27,8 @@ Based on [this paper](https://arxiv.org/abs/2208.07199)
 
 Sep 19, 2025
 
-10th School on Theoretical Informatics, Graphs And Mathematical
-Applications 2025, STIGMA '25.
+10th School on Theoretical Informatics, Graphs and Mathematical
+Applications 2025, STIGMA '25
 
 - [Handout](/pdfs/stigma2025-handout.pdf)
 - [Conference page](https://ggoat.fit.cvut.cz/stigma/2025.en.html)
@@ -37,12 +38,12 @@ Based on [this paper](https://arxiv.org/abs/2304.14295)
 {{< /card >}}
 
 {{< card >}}
-## Edge deletion to tree-like graph classes
+## Edge Deletion to Tree-Like Graph Classes
 
 Sep 20, 2024
 
-9th School on Theoretical Informatics, Graphs And Mathematical
-Applications 2024, STIGMA '24.
+9th School on Theoretical Informatics, Graphs and Mathematical
+Applications 2024, STIGMA '24
 
 - [Handout](/pdfs/stigma2024-handout.pdf)
 - [Conference page](https://ggoat.fit.cvut.cz/stigma/2024.en.html)

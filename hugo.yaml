@@ -71,6 +71,9 @@ languages:
     weight: 10
     menus:
       main:
+        - name: Me
+          pageRef: /me
+          weight: 10
         - name: Academia
           pageRef: /academia
           weight: 20

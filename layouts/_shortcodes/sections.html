@@ -1,0 +1,27 @@
+{{- /*
+Lists entries of the section you are writing about – its subsections, its standalone
+pages, or both – right here in its text, so prose and links can alternate instead of
+all links being dumped above or below the text:
+
+    {{< sections >}}                          everything, subsections then pages
+    {{< sections type="subsections" >}}      subsections only
+    {{< sections type="pages" >}}            standalone pages only
+    {{< sections only="communities" >}}      just this one, by folder or file name
+    {{< sections omit="hobbies" >}}          everything except these
+
+`only` and `omit` take comma-separated names, matched against the folder or file name
+in /content/ or against the title, ignoring case and spaces. Calls can be repeated to
+place one page's links in several groups:
+
+    Some intro.
+
+    {{< sections only="communities" >}}
+
+    Something about the community above, then the rest:
+
+    {{< sections >}}
+
+Whatever a page does not place itself is listed at the end by /layouts/section.html,
+so nothing disappears by being left out, and nothing is ever listed twice.
+*/ -}}
+{{- partial "section/entries.html" (dict "page" .Page "what" (.Get "type") "only" (.Get "only") "omit" (.Get "omit")) -}}

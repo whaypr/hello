@@ -1,0 +1,27 @@
+{{- /*
+Section index for every section and subsection on the site except /blog/, which
+has its own template: /me/, /academia/ and everything under them, and any section
+added later. Based on the theme's section.html, with three changes:
+
+  no title line – the menu item you clicked, the page's own lead line and the URL
+  all say where you are, and the site name in the header is already the h1 of the
+  document. Sections are therefore expected to open with a line of their own in
+  their _index.md, the way /academia/ does.
+
+  the entries are printed by /layouts/_partials/section/entries.html, which lists
+  only the ones the section has not placed itself – see the sections shortcode. A
+  section that places nothing gets all of them here, at the end.
+
+  no pagination – a section of cards or courses is read in one go. /blog/ keeps
+  the theme's paginator, which is what site.Params.sectionPagerSize is for.
+
+Has to sit at the root of /layouts/ under this exact name, not in /layouts/_default/,
+to win over the theme's own root-level section.html.
+*/ -}}
+{{ define "main" }}
+  {{ .Content }}
+
+  {{- /* after .Content on purpose: a sections shortcode further up the page has to
+  have run before this asks what is still left to list */ -}}
+  {{ partial "section/entries.html" (dict "page" .) }}
+{{ end }}
